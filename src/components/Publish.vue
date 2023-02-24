@@ -21,7 +21,23 @@
             </q-avatar>
           </template>
         </q-input>
-        <div class="flex justify-end mt-3">
+          <div class="flex justify-end mt-3 gap-2">
+            <!-- display the name of the file -->
+            <div v-if="audioFile" class="text-accent font-mono">
+              {{ audioFile.name }}
+            </div>
+            <!-- upload audio button -->
+            <input id="fileUpload" type="file" ref="file" accept="audio/*" hidden>
+            <q-btn
+              v-close-popup
+              label="Upload Audio"
+              rounded
+              unelevated
+              type="submit"
+              color="primary"
+              icon="folder_open"
+              @click="selectAudio"
+            />
           <q-btn
             v-close-popup
             label="Publish"
@@ -44,7 +60,8 @@ export default {
 
   data() {
     return {
-      text: ''
+      text: '',
+      audioFile: null,
     }
   },
 
@@ -72,6 +89,12 @@ export default {
       }
       let event = await this.$store.dispatch('sendPost', {message: this.text})
       if (event) this.toEvent(event.id)
+    },
+    selectAudio() {
+      this.$refs.file.click()
+      this.$refs.file.onchange = (e) => {
+        this.audioFile = e.target.files[0]
+      }
     }
   }
 }
