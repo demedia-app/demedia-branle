@@ -23,7 +23,9 @@ export const uploadFile = async file => {
         return data
       }
     })
-      .promise()
+    .promise()
 
-   return `https://${process?.env?.AWS_S3_BUCKET || ''}.s3.amazonaws.com/${file.name}`
+  return `https://${process?.env?.AWS_S3_BUCKET || ''}.s3.amazonaws.com/${
+    file.name
+  }`
 }

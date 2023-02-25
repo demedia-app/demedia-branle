@@ -21,23 +21,31 @@
             </q-avatar>
           </template>
         </q-input>
-          <div class="flex justify-end mt-3 gap-2">
-            <!-- display the name of the file -->
-            <div v-if="audioFile" class="text-accent font-mono">
-              {{ audioFile.name }}
-            </div>
-            <!-- upload audio button -->
-            <input id="fileUpload" ref="file" type="file" accept="audio/*" hidden>
-            <q-btn
-              v-close-popup
-              label="Upload Audio"
-              rounded
-              unelevated
-              type="submit"
-              color="primary"
-              icon="folder_open"
-              @click="selectAudio"
-            />
+        <div class="flex justify-end mt-3 gap-2">
+          <!-- display the upload progress -->
+          <q-linear-progress query v-if="fileUploading" color="primary" />
+          <!-- display the name of the file -->
+          <div v-if="audioFile && !fileUploading" class="text-accent font-mono">
+            {{ audioFile.name }}
+          </div>
+          <!-- upload audio button -->
+          <input
+            id="fileUpload"
+            ref="file"
+            type="file"
+            accept="audio/*"
+            hidden
+          />
+          <q-btn
+            v-close-popup
+            label="Upload Audio"
+            rounded
+            unelevated
+            type="submit"
+            color="primary"
+            icon="folder_open"
+            @click="selectAudio"
+          />
           <q-btn
             v-close-popup
             label="Publish"
@@ -54,7 +62,7 @@
 
 <script>
 import helpersMixin from '../utils/mixin'
-import { uploadFile } from '../utils/blob'
+import {uploadFile} from '../utils/blob'
 
 export default {
   mixins: [helpersMixin],
@@ -63,6 +71,7 @@ export default {
     return {
       text: '',
       audioFile: null,
+      fileUploading: false
     }
   },
 
@@ -88,14 +97,17 @@ export default {
       if (!this.text.length) {
         return
       }
+      this.fileUploading = true
       const fileUrl = await uploadFile(this.audioFile)
+      this.fileUploading = false
+      this.audioFile = null
       console.log({fileUrl})
       let event = await this.$store.dispatch('sendPost', {message: this.text})
       if (event) this.toEvent(event.id)
     },
     selectAudio() {
       this.$refs.file.click()
-      this.$refs.file.onchange = (e) => {
+      this.$refs.file.onchange = e => {
         this.audioFile = e.target.files[0]
       }
     }
