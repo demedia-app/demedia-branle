@@ -69,10 +69,22 @@
           {{ content.text }}
         </Markdown>
         <Recommend v-else-if="event.kind === 2" :url="event.content" />
-        <audio controls v-if="content.audioLink && event.kind === 1">
-          <source :src="content.audioLink" type="audio/mpeg" />
-        </audio>
       </q-item-label>
+      <div
+        v-if="content.audioLink && event.kind === 1"
+        class="flex justify-center mt-2"
+      >
+        <q-media-player
+          type="audio"
+          :source="content.audioLink"
+          class="w-full"
+          style="
+            --mediaplayer-color: #2262ba;
+            --mediaplayer-color-dark: #2262ba;
+            --mediaplayer-background: #;
+          "
+        />
+      </div>
     </q-item-section>
   </q-item>
 </template>

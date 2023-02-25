@@ -33,9 +33,18 @@
           style="hyphens: auto !important"
         >
           <Markdown>{{ content.text }}</Markdown>
-          <audio controls v-if="content.audioLink">
-            <source :src="content.audioLink" type="audio/mpeg" />
-          </audio>
+          <div v-if="content.audioLink" class="flex justify-center mt-2">
+            <q-media-player
+              type="audio"
+              :source="content.audioLink"
+              class="w-full"
+              style="
+                --mediaplayer-color: #2262ba;
+                --mediaplayer-color-dark: #2262ba;
+                --mediaplayer-background: #;
+              "
+            />
+          </div>
         </div>
         <div class="flex items-center justify-between w-full">
           <q-icon
