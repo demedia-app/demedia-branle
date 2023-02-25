@@ -92,6 +92,13 @@ module.exports = configure(function (ctx) {
         cfg.experiments = cfg.experiments || {}
         cfg.module = cfg.module || {rules: []}
         cfg.module.rules.push({test: /\.wasm$/, type: 'asset/inline'})
+      },
+
+      env: {
+        AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+        AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+        AWS_REGION: process.env.AWS_REGION,
+        AWS_S3_BUCKET: process.env.AWS_S3_BUCKET,
       }
     },
 

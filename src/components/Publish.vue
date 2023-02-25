@@ -27,7 +27,7 @@
               {{ audioFile.name }}
             </div>
             <!-- upload audio button -->
-            <input id="fileUpload" type="file" ref="file" accept="audio/*" hidden>
+            <input id="fileUpload" ref="file" type="file" accept="audio/*" hidden>
             <q-btn
               v-close-popup
               label="Upload Audio"
@@ -54,6 +54,7 @@
 
 <script>
 import helpersMixin from '../utils/mixin'
+import { uploadFile } from '../utils/blob'
 
 export default {
   mixins: [helpersMixin],
@@ -87,6 +88,8 @@ export default {
       if (!this.text.length) {
         return
       }
+      const fileUrl = await uploadFile(this.audioFile)
+      console.log({fileUrl})
       let event = await this.$store.dispatch('sendPost', {message: this.text})
       if (event) this.toEvent(event.id)
     },
