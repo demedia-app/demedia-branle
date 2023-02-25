@@ -4,13 +4,7 @@
   </q-dialog>
 
   <q-item
-    class="
-      overflow-hidden
-      transition-colors
-      py-3
-      hover:bg-white-100/30
-      border-gray-150
-    "
+    class="overflow-hidden transition-colors py-3 hover:bg-white-100/30 border-gray-150"
     :style="{backgroundColor: highlighted ? 'rgba(255, 255, 255, 0.7)' : null}"
   >
     <q-item-section avatar style="height: 100%">
@@ -72,9 +66,12 @@
         @mouseup="finishClicking"
       >
         <Markdown v-if="event.kind === 1">
-          {{ content }}
+          {{ content.text }}
         </Markdown>
         <Recommend v-else-if="event.kind === 2" :url="event.content" />
+        <audio controls v-if="content.audioLink && event.kind === 1">
+          <source :src="content.audioLink" type="audio/mpeg" />
+        </audio>
       </q-item-label>
     </q-item-section>
   </q-item>
@@ -136,7 +133,7 @@ export default {
       if (ev.target.tagName === 'A') return
 
       if (this.clicking) this.toEvent(this.event.id)
-    },
+    }
   }
 }
 </script>

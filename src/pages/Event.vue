@@ -32,7 +32,10 @@
           class="text-xl my-4 font-sans break-words"
           style="hyphens: auto !important"
         >
-          <Markdown>{{ content }}</Markdown>
+          <Markdown>{{ content.text }}</Markdown>
+          <audio controls v-if="content.audioLink">
+            <source :src="content.audioLink" type="audio/mpeg" />
+          </audio>
         </div>
         <div class="flex items-center justify-between w-full">
           <q-icon

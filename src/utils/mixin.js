@@ -36,6 +36,7 @@ export default {
     },
 
     interpolateMentions(text, tags) {
+      let audioLink = null
       const replacer = (_, index) => {
         if (tags.length >= 2) {
           const profile = tags[Number(index)][1]
@@ -45,8 +46,10 @@ export default {
           return _
         }
       }
-
-      return text.replace(/\B#\[(\d+)\]\B/g, replacer)
+      if (tags.length === 1 && tags[0][0] === 'audio' && tags[0][1]) {
+       audioLink = tags[0][1]
+      }
+      return {text: text.replace(/\B@\[(\d+)\]\B/g, replacer), audioLink}
     },
 
     createMentionsProvider(options) {
