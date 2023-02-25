@@ -97,12 +97,20 @@ export default {
       if (!this.text.length) {
         return
       }
-      this.fileUploading = true
-      const fileUrl = await uploadFile(this.audioFile)
-      this.fileUploading = false
-      this.audioFile = null
-      console.log({fileUrl})
-      let event = await this.$store.dispatch('sendPost', {message: this.text})
+      const tags = []
+      if (this.audioFile) {
+        this.fileUploading = true
+        const fileUrl = await uploadFile(this.audioFile)
+        this.fileUploading = false
+        this.audioFile = null
+        if (fileUrl) {
+          tags.push(['audio', fileUrl])
+        }
+      }
+      let event = await this.$store.dispatch('sendPost', {
+        message: this.text,
+        tags
+      })
       if (event) this.toEvent(event.id)
     },
     selectAudio() {
