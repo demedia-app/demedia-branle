@@ -41,7 +41,6 @@
             label="Upload Audio"
             rounded
             unelevated
-            type="submit"
             color="primary"
             icon="folder_open"
             @click="selectAudio"
