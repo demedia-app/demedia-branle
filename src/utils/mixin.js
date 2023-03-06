@@ -46,7 +46,7 @@ export default {
           return _
         }
       }
-      if (tags.length === 1 && tags[0][0] === 'audio' && tags[0][1]) {
+      if (tags.length === 2 && tags[0][0] === 'audio' && tags[0][1]) {
        audioLink = tags[0][1]
       }
       return {text: text.replace(/\B@\[(\d+)\]\B/g, replacer), audioLink}
