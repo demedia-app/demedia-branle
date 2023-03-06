@@ -27,12 +27,27 @@
           <div class="text-accent font-mono ml-4">
             {{ shorten(event.pubkey) }}
           </div>
+          <div v-if="content?.verified === 'true'" class="ml-2">
+            <q-icon name="verified" color="accent" />
+          </div>
         </div>
         <div
           class="text-xl my-4 font-sans break-words"
           style="hyphens: auto !important"
         >
-          <Markdown>{{ content }}</Markdown>
+          <Markdown>{{ content.text }}</Markdown>
+          <div v-if="content.audioLink" class="flex justify-center mt-2">
+            <q-media-player
+              type="audio"
+              :source="content.audioLink"
+              class="w-full"
+              style="
+                --mediaplayer-color: #2262ba;
+                --mediaplayer-color-dark: #2262ba;
+                --mediaplayer-background: #;
+              "
+            />
+          </div>
         </div>
         <div class="flex items-center justify-between w-full">
           <q-icon

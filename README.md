@@ -14,6 +14,13 @@ yarn
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
 ./node_modules/.bin/quasar dev
+
+AWS_ACCESS_KEY_ID=XoXoXoXo \
+    AWS_SECRET_ACCESS_KEY= XoXoXoXoXoXoXoXoXoXoXoXo \
+    AWS_S3_BUCKET=codepipeline-ap-south-1-61245200273 \ 
+    AWS_REGION=ap-south-1 \
+    LOCAL_RELAY=ws://localhost:7448 \
+    yarn dev
 ```
 
 ### Customize the brand

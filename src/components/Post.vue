@@ -4,13 +4,7 @@
   </q-dialog>
 
   <q-item
-    class="
-      overflow-hidden
-      transition-colors
-      py-3
-      hover:bg-white-100/30
-      border-gray-150
-    "
+    class="overflow-hidden transition-colors py-3 hover:bg-white-100/30 border-gray-150"
     :style="{backgroundColor: highlighted ? 'rgba(255, 255, 255, 0.7)' : null}"
   >
     <q-item-section avatar style="height: 100%">
@@ -30,6 +24,9 @@
           <Name :pubkey="event.pubkey" />
           <div class="text-accent font-mono text-xs">
             {{ shorten(event.pubkey) }}
+          </div>
+          <div v-if="content?.verified === 'true'" class="ml-2">
+            <q-icon name="verified" color="accent" />
           </div>
         </div>
         <div class="flex items-center">
@@ -72,10 +69,25 @@
         @mouseup="finishClicking"
       >
         <Markdown v-if="event.kind === 1">
-          {{ content }}
+          {{ content.text }}
         </Markdown>
         <Recommend v-else-if="event.kind === 2" :url="event.content" />
       </q-item-label>
+      <div
+        v-if="content.audioLink && event.kind === 1"
+        class="flex justify-center mt-2"
+      >
+        <q-media-player
+          type="audio"
+          :source="content.audioLink"
+          class="w-full"
+          style="
+            --mediaplayer-color: #2262ba;
+            --mediaplayer-color-dark: #2262ba;
+            --mediaplayer-background: #;
+          "
+        />
+      </div>
     </q-item-section>
   </q-item>
 </template>
@@ -136,7 +148,7 @@ export default {
       if (ev.target.tagName === 'A') return
 
       if (this.clicking) this.toEvent(this.event.id)
-    },
+    }
   }
 }
 </script>

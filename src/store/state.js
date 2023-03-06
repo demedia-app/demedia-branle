@@ -3,7 +3,7 @@ import {LocalStorage} from 'quasar'
 const isClientUsingTor = () => window.location.hostname.endsWith('.onion')
 
 const getMainnetRelays = () => {
-  const relays = [
+  let relays = [
     ['wss://relay.damus.io', '', ''],
     ['wss://nostr-pub.wellorder.net', '', ''],
     ['wss://nostr-verified.wellorder.net', '', '!'],
@@ -19,6 +19,9 @@ const getMainnetRelays = () => {
     ['wss://nostr.openchain.fr', '', ''],
     ['wss://nostr.drss.io', '', '']
   ]
+  if (process?.env?.LOCAL_RELAY) {
+    relays = [[process.env.LOCAL_RELAY, '', '']]
+  }
 
   for (let i = 0; i < 3; i++) {
     let pick = parseInt(Math.random() * optional.length)
