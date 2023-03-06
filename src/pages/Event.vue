@@ -27,6 +27,9 @@
           <div class="text-accent font-mono ml-4">
             {{ shorten(event.pubkey) }}
           </div>
+          <div v-if="content?.verified === 'true'" class="ml-2">
+            <q-icon name="verified" color="accent" />
+          </div>
         </div>
         <div
           class="text-xl my-4 font-sans break-words"
