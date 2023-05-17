@@ -95,11 +95,11 @@ module.exports = configure(function (ctx) {
       },
 
       env: {
-        AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
-        AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
-        AWS_REGION: process.env.AWS_REGION,
-        AWS_S3_BUCKET: process.env.AWS_S3_BUCKET,
-        LOCAL_RELAY: process.env.LOCAL_RELAY,
+        ACCESS_KEY_ID_AWS: process.env.ACCESS_KEY_ID_AWS,
+        SECRET_ACCESS_KEY_AWS: process.env.SECRET_ACCESS_KEY_AWS,
+        REGION_AWS: process.env.REGION_AWS,
+        S3_BUCKET_AWS: process.env.S3_BUCKET_AWS,
+        LOCAL_RELAY: process.env.LOCAL_RELAY
       }
     },
 
