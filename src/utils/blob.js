@@ -11,7 +11,10 @@ export const uploadFile = async file => {
     Bucket: process?.env?.S3_BUCKET_AWS || '',
     Key: file.name,
     Body: file,
-    ACL: 'public-read'
+    ACL: 'public-read',
+    Metadata: {
+      'Cross-Origin-Resource-Policy': 'cross-origin'
+    }
   }
   await s3
     .upload(params, (err, data) => {
