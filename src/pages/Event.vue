@@ -46,6 +46,7 @@
                 --mediaplayer-color-dark: #2262ba;
                 --mediaplayer-background: #;
               "
+              crossorigin="anonymous"
             />
           </div>
         </div>
