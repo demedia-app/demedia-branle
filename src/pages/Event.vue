@@ -46,7 +46,6 @@
                 --mediaplayer-color-dark: #2262ba;
                 --mediaplayer-background: #;
               "
-              crossorigin="anonymous"
             />
           </div>
         </div>
@@ -175,6 +174,14 @@ export default {
 
   mounted() {
     this.start()
+    this.$nextTick(function() {
+      // Code that will run only after the
+      // entire view has been rendered
+      let videoElements = document.getElementsByTagName('video');
+      for(let i = 0; i < videoElements.length; i++){
+        videoElements[i].setAttribute('crossorigin', 'anonymous');
+      }
+    })
   },
 
   beforeUnmount() {
@@ -315,12 +322,6 @@ export default {
     publishTo(relayURL) {
       pool.relays[relayURL]?.relay?.publish?.(this.event)
     }
-  },
-
-  onMounted() {
-    document.querySelectorAll('video, audio').forEach((el) => {
-      el.setAttribute('crossorigin', 'anonymous')
-    })
   }
 }
 </script>
