@@ -150,6 +150,12 @@ export default {
 
       if (this.clicking) this.toEvent(this.event.id)
     }
+  },
+
+  onMounted() {
+    document.querySelectorAll('video, audio').forEach((el) => {
+      el.setAttribute('crossorigin', 'anonymous')
+    })
   }
 }
 </script>

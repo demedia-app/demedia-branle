@@ -315,6 +315,12 @@ export default {
     publishTo(relayURL) {
       pool.relays[relayURL]?.relay?.publish?.(this.event)
     }
+  },
+
+  onMounted() {
+    document.querySelectorAll('video, audio').forEach((el) => {
+      el.setAttribute('crossorigin', 'anonymous')
+    })
   }
 }
 </script>
