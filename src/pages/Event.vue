@@ -173,7 +173,6 @@ export default {
   },
 
   mounted() {
-    this.start()
     this.$nextTick(function () {
       // Code that will run only after the
       // entire view has been rendered
@@ -182,6 +181,7 @@ export default {
         videoElements[i].setAttribute('crossorigin', 'anonymous')
       }
     })
+    this.start()
   },
 
   beforeUnmount() {
