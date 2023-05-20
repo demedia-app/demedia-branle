@@ -29,3 +29,4 @@ ACCESS_KEY_ID_AWS=XoXoXoXo \
 
 Edit `customize.json` and replace the colors, icon, name and dark mode setting.
 When setting the dark mode, you can also set the colors `"dark-page"` and `"dark"`.
+
