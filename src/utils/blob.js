@@ -13,7 +13,8 @@ export const uploadFile = async file => {
     Body: file,
     ACL: 'public-read',
     Metadata: {
-      'Cross-Origin-Resource-Policy': 'cross-origin'
+      'Cross-Origin-Resource-Policy': 'cross-origin',
+      'Access-Control-Allow-Origin' : '*'
     }
   }
   await s3
