@@ -47,14 +47,13 @@ export default {
           return _
         }
       }
-      if (tags.length === 2 && tags[0][0] === 'audio' && tags[0][1]) {
-        audioLink = tags[0][1]
+      const audioTag = tags.find(tag => tag.find(t => t === 'audio'))
+      if (audioTag) {
+        audioLink = audioTag[1]
       }
-      if (tags.length === 2 && tags[1][0] === 'hash' && tags[1][2]) {
-        verified = tags[1][2]
-      }
-      if (tags.length === 1 && tags[0][0] === 'hash' && tags[0][2]) {
-        verified = tags[0][2]
+      const verifiedTag = tags.find(tag => tag.find(t => t === 'hash'))
+      if (verifiedTag) {
+        verified = verifiedTag[2]
       }
       return {
         text: text.replace(/\B@\[(\d+)\]\B/g, replacer),
