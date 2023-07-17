@@ -103,6 +103,11 @@ export default {
         attach: element => tribute.attach(element),
         detach: element => tribute.detach(element)
       }
+    },
+
+    deleteEvent(event) {
+      this.$store.dispatch('deleteEvent', {event})
+      this.$router.push('/')
     }
   }
 }

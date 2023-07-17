@@ -245,6 +245,18 @@ async function run() {
 
     dbExec(sql, params = []) {
       return db.exec(sql, params)
+    },
+
+    dbDeleteEvent(id) {
+      this.deleteFromSeenStmt.bind({':id': id})
+      this.deleteFromSeenStmt.step()
+      this.deleteFromSeenStmt.reset()
+      this.deleteFromTagsStmt.bind({':id': id})
+      this.deleteFromTagsStmt.step()
+      this.deleteFromTagsStmt.reset()
+      this.deleteFromEventsStmt.bind({':id': id})
+      this.deleteFromEventsStmt.step()
+      this.deleteFromEventsStmt.reset()
     }
   }
 
