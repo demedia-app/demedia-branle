@@ -3,7 +3,7 @@ import {Notify} from 'quasar'
 
 import bus from '../bus'
 import {pool, signAsynchronously} from '../pool'
-import {dbSave, dbGetMetaEvent} from '../db'
+import {dbSave, dbGetMetaEvent, dbDeleteEvent} from '../db'
 import {processMentions, getPubKeyTagWithRelay} from '../utils/helpers'
 import {metadataFromEvent} from '../utils/event'
 
@@ -341,5 +341,15 @@ export async function publishRelaysList(store) {
   Notify.create({
     message: 'Updated and published list of relays.',
     color: 'positive'
+  })
+}
+
+export async function deleteEvent(store, {event}) {
+  await dbDeleteEvent(event.id)
+  store.commit('removeFromHomeFeed', event.id)
+  await pool.publish({
+    pubkey: store.state.keys.pub,
+    kind: 5,
+    tags: [['e', event.id], ...event.tags]
   })
 }

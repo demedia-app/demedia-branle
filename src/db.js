@@ -46,5 +46,8 @@ export async function dbGetMetaEventSeen(kind, pubkey) {
 export async function dbExec(sql) {
   return call('dbExec', [sql])
 }
+export async function dbDeleteEvent(id) {
+  return call('dbDeleteEvent', [id])
+}
 
 window.sql = dbExec
