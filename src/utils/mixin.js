@@ -107,7 +107,7 @@ export default {
 
     deleteEvent(event) {
       this.$store.dispatch('deleteEvent', {event})
-      this.$router.push('/')
+      this.$router.go()
     }
   }
 }
