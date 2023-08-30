@@ -4,6 +4,24 @@ export function addToThread(threads, event) {
   // filter just tagged event ids from tags
   let refs = event.tags.filter(([t, v]) => t === 'e' && v).map(([_, v]) => v)
   if (refs.length === 0) {
+    for (let i = 0; i < threads.length; i++) {
+      let thread = threads[i]
+      for (let j = 0; j < thread.length; j++) {
+        if (thread[j].content === event.content) {
+          if (thread[j].tags.length === 0) {
+            thread.splice(j, 1)
+            if (thread.length === 0) {
+              threads.splice(i, 1)
+            }
+            return
+          }
+          if (event.tags.length === 0) {
+            return
+          }
+        }
+      }
+    }
+
     // this event starts its own thread
     addSorted(threads, [event], (a, b) => a[0].created_at < b[0].created_at)
     return
