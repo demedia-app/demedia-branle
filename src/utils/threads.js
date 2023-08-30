@@ -8,14 +8,13 @@ export function addToThread(threads, event) {
       let thread = threads[i]
       for (let j = 0; j < thread.length; j++) {
         if (thread[j].content === event.content) {
-          if (thread[j].tags.length === 0) {
+          if (event.tags.length > thread[j].tags.length) {
             thread.splice(j, 1)
             if (thread.length === 0) {
               threads.splice(i, 1)
             }
             return
-          }
-          if (event.tags.length === 0) {
+          } else {
             return
           }
         }
