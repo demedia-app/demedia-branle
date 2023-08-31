@@ -229,7 +229,10 @@ export default {
     async listen() {
       this.eventSub = pool.sub(
         {
-          filter: {ids: [this.$route.params.eventId]},
+          filter: {
+            ids: [this.$route.params.eventId],
+            authors: [this.$store.state.keys.pub]
+          },
           cb: async (event, relay) => {
             this.seenOn.push(relay)
 
