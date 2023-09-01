@@ -147,7 +147,7 @@ export default {
     finishClicking(ev) {
       if (ev.target.tagName === 'A') return
 
-      if (this.clicking) this.toEvent(this.event.id)
+      if (this.clicking) this.toEvent(this.event.id, this.event.pubkey)
     }
   },
 

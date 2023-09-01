@@ -21,8 +21,8 @@ export default {
       this.$router.push('/' + pubkey)
     },
 
-    toEvent(id) {
-      this.$router.push('/event/' + id)
+    toEvent(id, pubkey = null) {
+      this.$router.push(`/event/${id}${pubkey ? `:${pubkey}` : ''}`)
     },
 
     shorten,

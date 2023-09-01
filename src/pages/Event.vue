@@ -227,12 +227,12 @@ export default {
     },
 
     async listen() {
+      const [eventId, author] = this.$route.params.eventId.split(':')
+      const filter = {ids: [eventId]}
+      if (author) filter.authors = [author]
       this.eventSub = pool.sub(
         {
-          filter: {
-            ids: [this.$route.params.eventId],
-            authors: [this.$store.state.keys.pub]
-          },
+          filter,
           cb: async (event, relay) => {
             this.seenOn.push(relay)
 
@@ -263,7 +263,7 @@ export default {
         {
           filter: [
             {
-              '#e': [this.$route.params.eventId],
+              '#e': [this.$route.params.eventId.split(':')[0]],
               kinds: [1]
             }
           ],
