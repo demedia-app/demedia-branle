@@ -167,6 +167,7 @@ export default {
         .filter(url => this.seenOn.indexOf(url) === -1)
     },
     content() {
+      if (!this.event) return null
       return this.interpolateMentions(this.event.content, this.event.tags)
     }
   },
@@ -181,19 +182,19 @@ export default {
   },
 
   mounted() {
-    //this.$nextTick(function () {
-    this.startInterval = setInterval(() => {
+    const startInterval = setInterval(() => {
       // Code that will run only after the
       // entire view has been rendered
       let videoElements = document.getElementsByTagName('video')
       for (let i = 0; i < videoElements.length; i++) {
         videoElements[i].setAttribute('crossorigin', 'anonymous')
       }
-      if (videoElements.length != 0 || (videoElements.length == 0 && !content.audioLink)) {
-         clearInterval(this.startInterval)
+      if (
+        videoElements.length !== 0 ||
+        (videoElements.length === 0 && this.content && !this.content?.audioLink)
+      ) {
+        clearInterval(startInterval)
       }
-      console.log("video-setAttribute", videoElements.length)
-    //})
     }, 0)
     this.start()
   },
