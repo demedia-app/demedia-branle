@@ -85,7 +85,7 @@
         </div>
       </div>
       <div v-else class="font-mono text-slate-400 p-8">
-        Event {{ $route.params.eventId }}
+        Event {{ $route.params.eventId.split(':')[0] }}
       </div>
     </div>
 
