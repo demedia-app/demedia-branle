@@ -158,6 +158,7 @@ export default {
       let videoElements = document.getElementsByTagName('video')
       for (let i = 0; i < videoElements.length; i++) {
         videoElements[i].setAttribute('crossorigin', 'anonymous')
+        videoElements[i].setAttribute('type', 'audio/mp3')
       }
     })
   }
