@@ -192,6 +192,7 @@ export default {
       if (videoElements.length != 0 || (videoElements.length == 0 && !content.audioLink)) {
          clearInterval(this.startInterval)
       }
+      console.log("video-setAttribute", videoElements.length)
     //})
     }, 0)
     this.start()
