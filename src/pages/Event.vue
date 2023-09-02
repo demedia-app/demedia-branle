@@ -181,6 +181,19 @@ export default {
   },
 
   mounted() {
+    //this.$nextTick(function () {
+    this.startInterval = setInterval(() => {
+      // Code that will run only after the
+      // entire view has been rendered
+      let videoElements = document.getElementsByTagName('video')
+      for (let i = 0; i < videoElements.length; i++) {
+        videoElements[i].setAttribute('crossorigin', 'anonymous')
+      }
+      if (videoElements.length != 0 || (videoElements.length == 0 && !content.audioLink)) {
+         clearInterval(this.startInterval)
+      }
+    //})
+    }, 0)
     this.start()
   },
 
@@ -188,26 +201,8 @@ export default {
     this.stop()
   },
 
-  onBeforeUpdate() {
-    this.$nextTick(() => {
-      // Code that will run only after the
-      // entire view has been rendered
-      let videoElements = document.getElementsByTagName('video')
-      for (let i = 0; i < videoElements.length; i++) {
-        videoElements[i].setAttribute('crossorigin', 'anonymous')
-      }
-    })
-  },
-
   updated() {
     this.$nextTick(() => {
-      // Code that will run only after the
-      // entire view has been rendered
-      let videoElements = document.getElementsByTagName('video')
-      for (let i = 0; i < videoElements.length; i++) {
-        videoElements[i].setAttribute('crossorigin', 'anonymous')
-      }
-      
       if (this.screenHasMoved) {
         this.$refs.main.scrollIntoView()
       }
