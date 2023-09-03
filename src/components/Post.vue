@@ -160,6 +160,12 @@ export default {
         videoElements[i].setAttribute('crossorigin', 'anonymous')
         videoElements[i].setAttribute('type', 'audio/mp3')
       }
+      let errorElements = document.getElementsByClassName(
+        'q-media__error-window--button'
+      )
+      for (let i = 0; i < errorElements.length; i++) {
+        errorElements[i].click()
+      }
     })
   }
 }
