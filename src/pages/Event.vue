@@ -197,7 +197,7 @@ export default {
         clearInterval(startInterval)
       }
     }, 0)
-    const startErrorWindow = setInterval(() => {
+    setInterval(() => {
       const errorWindow = document.getElementsByClassName(
         'q-media__error-window'
       )
