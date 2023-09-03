@@ -191,10 +191,10 @@ export default {
         videoElements[i].setAttribute('type', 'audio/mp3')
       }
       let errorElements = document.getElementsByClassName(
-        'q-media__error-window'
+        'q-media__error-window--button'
       )
       for (let i = 0; i < errorElements.length; i++) {
-        errorElements[i].style.display = 'none'
+        errorElements[i].click()
       }
       if (
         videoElements.length !== 0 ||
