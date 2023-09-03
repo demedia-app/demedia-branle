@@ -190,6 +190,12 @@ export default {
         videoElements[i].setAttribute('crossorigin', 'anonymous')
         videoElements[i].setAttribute('type', 'audio/mp3')
       }
+      let errorElements = document.getElementsByClassName(
+        'q-media__error-window'
+      )
+      for (let i = 0; i < errorElements.length; i++) {
+        errorElements[i].style.display = 'none'
+      }
       if (
         videoElements.length !== 0 ||
         (videoElements.length === 0 && this.content && !this.content?.audioLink)
