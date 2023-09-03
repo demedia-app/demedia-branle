@@ -152,7 +152,17 @@ export default {
     }
   },
 
-  mounted() {}
+  mounted() {
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been rendered
+      let videoElements = document.getElementsByTagName('video')
+      for (let i = 0; i < videoElements.length; i++) {
+        videoElements[i].setAttribute('crossorigin', 'anonymous')
+        videoElements[i].setAttribute('type', 'audio/mp3')
+      }
+    })
+  }
 }
 </script>
 <style type="css" scoped>
