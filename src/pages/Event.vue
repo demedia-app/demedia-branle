@@ -215,6 +215,12 @@ export default {
       if (this.screenHasMoved) {
         this.$refs.main.scrollIntoView()
       }
+      let errorElements = document.getElementsByClassName(
+        'q-media__error-window--button'
+      )
+      for (let i = 0; i < errorElements.length; i++) {
+        errorElements[i].click()
+      }
     })
   },
 
