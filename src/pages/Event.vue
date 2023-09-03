@@ -208,7 +208,7 @@ export default {
         for (let i = 0; i < errorWindowButton.length; i++) {
           errorWindowButton[i].click()
         }
-        clearInterval(startErrorWindow)
+        // clearInterval(startErrorWindow)
       }
     }, 0)
     this.start()
