@@ -46,7 +46,7 @@
           <Markdown>{{ content.text }}</Markdown>
           <div v-if="content.audioLink" class="flex justify-center mt-2">
             <q-media-player
-              type="audio/mp3"
+              type="audio"
               :source="content.audioLink"
               class="w-full"
               cross-origin="anonymous"
@@ -183,6 +183,21 @@ export default {
   },
 
   mounted() {
+    const startInterval = setInterval(() => {
+      // Code that will run only after the
+      // entire view has been rendered
+      let videoElements = document.getElementsByTagName('video')
+      for (let i = 0; i < videoElements.length; i++) {
+        // videoElements[i].setAttribute('crossorigin', 'anonymous')
+        videoElements[i].setAttribute('type', 'audio/mp3')
+      }
+      if (
+        videoElements.length !== 0 ||
+        (videoElements.length === 0 && this.content && !this.content?.audioLink)
+      ) {
+        clearInterval(startInterval)
+      }
+    }, 0)
     this.start()
   },
 
