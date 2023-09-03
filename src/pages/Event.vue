@@ -210,7 +210,12 @@ export default {
       }
     }
     const observer = new MutationObserver(callback)
-    observer.observe(targetNode, config)
+    const observerInterval = setInterval(() => {
+      if (targetNode) {
+        observer.observe(targetNode, config)
+        clearInterval(observerInterval)
+      }
+    }, 0)
     this.start()
   },
 
