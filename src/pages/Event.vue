@@ -197,23 +197,18 @@ export default {
         clearInterval(startInterval)
       }
     }, 0)
-    // close the error q-media__error-window clicking  q-media__error-window--button using mutationobserver
-    const targetNode = document.getElementsByClassName(
-      'q-media__error-window--button'
-    )[0]
-    const config = {attributes: true, childList: true, subtree: true}
-    const callback = function (mutationsList, observer) {
-      for (const mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-          targetNode.click()
+    const startErrorWindow = setInterval(() => {
+      const errorWindow = document.getElementsByClassName(
+        'q-media__error-window'
+      )
+      if (errorWindow.length !== 0) {
+        const errorWindowButton = document.getElementsByClassName(
+          'q-media__error-window--button'
+        )
+        for (let i = 0; i < errorWindowButton.length; i++) {
+          errorWindowButton[i].click()
         }
-      }
-    }
-    const observer = new MutationObserver(callback)
-    const observerInterval = setInterval(() => {
-      if (targetNode) {
-        observer.observe(targetNode, config)
-        clearInterval(observerInterval)
+        clearInterval(startErrorWindow)
       }
     }, 0)
     this.start()
