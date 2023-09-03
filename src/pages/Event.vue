@@ -190,12 +190,6 @@ export default {
         videoElements[i].setAttribute('crossorigin', 'anonymous')
         videoElements[i].setAttribute('type', 'audio/mp3')
       }
-      let errorElements = document.getElementsByClassName(
-        'q-media__error-window--button'
-      )
-      for (let i = 0; i < errorElements.length; i++) {
-        errorElements[i].click()
-      }
       if (
         videoElements.length !== 0 ||
         (videoElements.length === 0 && this.content && !this.content?.audioLink)
@@ -203,6 +197,20 @@ export default {
         clearInterval(startInterval)
       }
     }, 0)
+    // close the error q-media__error-window clicking  q-media__error-window--button using mutationobserver
+    const targetNode = document.getElementsByClassName(
+      'q-media__error-window--button'
+    )[0]
+    const config = {attributes: true, childList: true, subtree: true}
+    const callback = function (mutationsList, observer) {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          targetNode.click()
+        }
+      }
+    }
+    const observer = new MutationObserver(callback)
+    observer.observe(targetNode, config)
     this.start()
   },
 
@@ -214,12 +222,6 @@ export default {
     this.$nextTick(() => {
       if (this.screenHasMoved) {
         this.$refs.main.scrollIntoView()
-      }
-      let errorElements = document.getElementsByClassName(
-        'q-media__error-window--button'
-      )
-      for (let i = 0; i < errorElements.length; i++) {
-        errorElements[i].click()
       }
     })
   },
