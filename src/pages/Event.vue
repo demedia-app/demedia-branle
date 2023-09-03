@@ -49,6 +49,7 @@
               type="audio"
               :source="content.audioLink"
               class="w-full"
+              cross-origin="anonymous"
               style="
                 --mediaplayer-color: #2262ba;
                 --mediaplayer-color-dark: #2262ba;
@@ -182,35 +183,6 @@ export default {
   },
 
   mounted() {
-    const startInterval = setInterval(() => {
-      // Code that will run only after the
-      // entire view has been rendered
-      let videoElements = document.getElementsByTagName('video')
-      for (let i = 0; i < videoElements.length; i++) {
-        videoElements[i].setAttribute('crossorigin', 'anonymous')
-        videoElements[i].setAttribute('type', 'audio/mp3')
-      }
-      if (
-        videoElements.length !== 0 ||
-        (videoElements.length === 0 && this.content && !this.content?.audioLink)
-      ) {
-        clearInterval(startInterval)
-      }
-    }, 0)
-    setInterval(() => {
-      const errorWindow = document.getElementsByClassName(
-        'q-media__error-window'
-      )
-      if (errorWindow.length !== 0) {
-        const errorWindowButton = document.getElementsByClassName(
-          'q-media__error-window--button'
-        )
-        for (let i = 0; i < errorWindowButton.length; i++) {
-          errorWindowButton[i].click()
-        }
-        // clearInterval(startErrorWindow)
-      }
-    }, 0)
     this.start()
   },
 
