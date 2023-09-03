@@ -46,7 +46,7 @@
           <Markdown>{{ content.text }}</Markdown>
           <div v-if="content.audioLink" class="flex justify-center mt-2">
             <q-media-player
-              type="audio"
+              type="audio/mp3"
               :source="content.audioLink"
               class="w-full"
               cross-origin="anonymous"

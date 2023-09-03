@@ -78,7 +78,7 @@
         class="flex justify-center mt-2"
       >
         <q-media-player
-          type="audio"
+          type="audio/mp3"
           :source="content.audioLink"
           class="w-full"
           cross-origin="anonymous"
@@ -152,17 +152,7 @@ export default {
     }
   },
 
-  mounted() {
-    this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been rendered
-      let videoElements = document.getElementsByTagName('video')
-      for (let i = 0; i < videoElements.length; i++) {
-        videoElements[i].setAttribute('crossorigin', 'anonymous')
-        videoElements[i].setAttribute('type', 'audio/mp3')
-      }
-    })
-  }
+  mounted() {}
 }
 </script>
 <style type="css" scoped>
