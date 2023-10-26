@@ -30,7 +30,10 @@
           <div v-if="content?.verified === 'true'" class="ml-2">
             <q-icon name="verified" color="accent" />
           </div>
-          <div class="ml-auto">
+          <div
+            v-if="$route.params.eventId.split(':')[1] === event.pubkey"
+            class="ml-auto"
+          >
             <q-icon
               name="delete"
               color="primary"
